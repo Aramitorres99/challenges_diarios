@@ -1,13 +1,19 @@
-from flask_sqlalchemy import SQLAlchemy
+import sqlite3
 
-db = SQLAlchemy() #db se convierte en un objeto que nos permite interactuar con la base de datos
+# Conectar a la base de datos 
+conn = sqlite3.connect('base_de_datos.db')
+cursor = conn.cursor()
 
-class Usuarios(db.Model): #modelo de datos gestionado por sqlalchemy
+# Crear la tabla Usuarios
+cursor.execute('''
+CREATE TABLE Usuarios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+)
+''')
+#guardar los datos
+conn.commit()
+#cerrar la conexion
+conn.close()
     
-    #los atributos de clase definen "que datos" se van a guardar o sea columnas
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(50), nullable = False)
-    #atributos de instancia contienen los datos especifivos que esos campos almacenan
-    def __init__(self, nombre): 
-        self.nombre = nombre
         
