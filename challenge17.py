@@ -1,3 +1,4 @@
+#Creación de tabla: Escribe una consulta SQL para crear una tabla Usuarioscon columnas id y nombre.
 import sqlite3
 
 # Conectar a la base de datos 
